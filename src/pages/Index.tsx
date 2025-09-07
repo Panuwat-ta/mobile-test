@@ -3,8 +3,9 @@ import LoginScreen from "@/components/LoginScreen";
 import DashboardScreen from "@/components/DashboardScreen";
 import GridScreen from "@/components/GridScreen";
 import ProfileScreen from "@/components/ProfileScreen";
-import ChatScreen from "@/components/ChatScreen";
+import ChatScreen from "@/components/Notifications";
 import BottomNavigation from "@/components/BottomNavigation";
+import AddTaskScreen from "@/components/AddTaskScreen";
 
 const Index = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,7 +38,13 @@ const Index = () => {
       case "chat":
         return <ChatScreen onBack={handleBack} />;
       case "add":
-        return <DashboardScreen />; // Placeholder for add functionality
+       return <AddTaskScreen
+               onBack={handleBack}
+               onSubmit={(task) => {
+                 console.log("เพิ่มงาน:", task);
+                 handleNavigate("dashboard");
+               }}
+             />;
       default:
         return <DashboardScreen />;
     }
